@@ -2,15 +2,16 @@ package br.com.vendas.api.entity;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table
-public class Pessoa {
+public abstract class Pessoa {
 
     @Column
-    private String nome,email,telefone;
+    private String nome;
+    @Column
+    private String email;
+    @Column
+    private String telefone;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private String cpf;
 
     public String getCpf() {

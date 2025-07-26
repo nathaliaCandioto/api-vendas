@@ -1,11 +1,14 @@
 package br.com.vendas.api.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Cliente extends  Pessoa{
+public class Cliente extends Pessoa {
+
+    @Id
+    @Column
+    private Long id;
 
     public Cliente(String cpf, String nome, String email, String telefone) {
         super(cpf, nome, email, telefone);

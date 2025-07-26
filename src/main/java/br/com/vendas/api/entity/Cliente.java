@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Cliente extends Pessoa {
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Cliente(String cpf, String nome, String email, String telefone) {
@@ -17,5 +17,10 @@ public class Cliente extends Pessoa {
     @Override
     public String toString() {
         return "Cliente{} " + super.toString();
+    }
+
+    public Cliente(String cpf, String nome, String email, String telefone, Long id) {
+        super(cpf, nome, email, telefone);
+        this.id = id;
     }
 }

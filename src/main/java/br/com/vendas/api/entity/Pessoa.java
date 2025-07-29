@@ -2,17 +2,17 @@ package br.com.vendas.api.entity;
 
 import jakarta.persistence.*;
 
+@MappedSuperclass
 public abstract class Pessoa {
 
     @Column
-    private String nome;
+    protected String nome;
     @Column
-    private String email;
+    protected String email;
     @Column
-    private String telefone;
-
+    protected String telefone;
     @Column
-    private String cpf;
+    protected String cpf;
 
     public String getCpf() {
         return cpf;
@@ -61,5 +61,8 @@ public abstract class Pessoa {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+    }
+    public Pessoa(){
+
     }
 }

@@ -2,11 +2,13 @@ package br.com.vendas.api.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table
 public class Cliente extends Pessoa {
 
-    @Id
+  @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -19,8 +21,14 @@ public class Cliente extends Pessoa {
         return "Cliente{} " + super.toString();
     }
 
+    public Cliente(){
+        super();
+    }
+
     public Cliente(String cpf, String nome, String email, String telefone, Long id) {
         super(cpf, nome, email, telefone);
         this.id = id;
     }
+
+
 }

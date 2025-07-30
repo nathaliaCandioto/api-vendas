@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -19,11 +20,19 @@ public class ClienteService {
 
     }
 
+    public List<Cliente> findByAttributes(String cpf, String nome,String email,String telefone) {
+        return clienteRepository.findByAttributes(cpf, nome,email,telefone);
+    }
+
     public List<Cliente> listaTodosClientes(){
         return clienteRepository.findAll();
     }
 
-
-
+    public void excluirCliente(String cpf) {
+        Optional<Cliente> cliente = clienteRepository.findByCpf(cpf);
+        if (cliente.isPresent()) {
+            clienteRepository.delete(cliente.get());
+        }
+    }
 
 }

@@ -22,8 +22,16 @@ public class ClienteController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List <Cliente> listarCliente(){
-        return clienteService.listaTodosClientes();
+    public List <Cliente> listarCliente(@RequestParam(value = "cpf", required = false) String cpf,
+                                        @RequestParam(value = "nome", required = false) String nome,
+                                        @RequestParam(value="email",required=false) String email,
+                                        @RequestParam(value="telefone",required = false)String telefone){
+        return clienteService.findByAttributes(cpf, nome,email,telefone);
     }
 
+    @DeleteMapping ("/{cpf}")
+    @ResponseStatus(HttpStatus.OK)
+    public void excluirCliente(@PathVariable(value = "cpf") String cpf){
+        clienteService.excluirCliente(cpf);
+    }
 }

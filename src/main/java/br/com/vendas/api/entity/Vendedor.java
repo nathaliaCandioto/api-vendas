@@ -23,7 +23,7 @@ public class Vendedor extends Pessoa {
     @Column
     private Double comissao;
 
-    public Vendedor(String cpf, String nome, String email, String telefone){
+    public Vendedor(String cpf, String nome, String email, String telefone,Double salario,Double comissao){
         super(cpf,nome,email,telefone);
 
     }

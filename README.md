@@ -7,20 +7,20 @@ Projeto de estudo com Spring Boot.
 
 ## Endpoints disponíveis
 ### Cliente
-| Método   | Caminho               | Descrição                                                                |
-| -------- | --------------------- | ------------------------------------------------------------------------ |
-| `POST`   | `/cadastro/cadastrar` | Cadastra um novo cliente. Exemplo de corpo JSON: `{ "cpf": "...", ... }` |
-| `GET`    | `/cadastro/all`       | Lista todos os clientes cadastrados.                                     |
-| `GET`    | `/cadastro`           | Busca clientes filtrando por `cpf`, `nome`, `email` ou `telefone`.       |
-| `DELETE` | `/cadastro/{cpf}`     | Remove um cliente pelo CPF.                                              |
+| Método   | Caminho    | Descrição                                                                                             |
+| -------- |------------|-------------------------------------------------------------------------------------------------------|
+| `POST`   | `/cliente` | Cadastra um novo cliente. Exemplo de corpo JSON: `{ "cpf": "", "nome": "", "email", "telefone": ""}` |
+| `GET`    | `/cliente/all` | Lista todos os clientes cadastrados.                                                                  |
+| `GET`    | `/cliente` | Busca clientes filtrando por `cpf`, `nome`, `email` ou `telefone`.                                    |
+| `DELETE` | `/cliente/{cpf}` | Remove um cliente pelo CPF.                                                                           |
 
 ### Vendedor
-| Método   | Caminho           | Descrição                                                                                 |
-| -------- | ----------------- | ----------------------------------------------------------------------------------------- |
-| `POST`   | `/vendedor`       | Cadastra um novo vendedor. Exemplo de corpo JSON: `{ "cpf": "...", "salario": ..., ... }` |
-| `GET`    | `/vendedor/all`   | Lista todos os vendedores cadastrados.                                                    |
-| `GET`    | `/vendedor`       | Busca vendedores filtrando por `cpf`, `nome`, `email`, `telefone`, `salario`, `comissao`. |
-| `DELETE` | `/vendedor/{cpf}` | Remove um vendedor pelo CPF.                                                              |
+| Método   | Caminho           | Descrição                                                                                                                                  |
+| -------- | ----------------- |--------------------------------------------------------------------------------------------------------------------------------------------|
+| `POST`   | `/vendedor`       | Cadastra um novo vendedor. Exemplo de corpo JSON: `{ "cpf": "", "nome": "", "email": "", "telefone": "", "salario": 0.0, "comissao": 0.0}` |
+| `GET`    | `/vendedor/all`   | Lista todos os vendedores cadastrados.                                                                                                     |
+| `GET`    | `/vendedor`       | Busca vendedores filtrando por `cpf`, `nome`, `email`, `telefone`, `salario`, `comissao`.                                                  |
+| `DELETE` | `/vendedor/{cpf}` | Remove um vendedor pelo CPF.                                                                                                               |
 
 ## Tecnologias
 - Java 21

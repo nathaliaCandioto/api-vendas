@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cadastro")
+@RequestMapping("/cliente")
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente cadastrarCliente(@RequestBody Cliente cliente){
         return clienteService.cadastraCliente(cliente);

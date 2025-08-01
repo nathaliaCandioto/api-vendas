@@ -20,6 +20,12 @@ public class ClienteController {
         return clienteService.cadastraCliente(cliente);
     }
 
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List <Cliente> listarTodosVendedores(){
+        return clienteService.listaTodosClientes();
+    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List <Cliente> listarCliente(@RequestParam(value = "cpf", required = false) String cpf,
@@ -30,7 +36,7 @@ public class ClienteController {
     }
 
     @DeleteMapping ("/{cpf}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluirCliente(@PathVariable(value = "cpf") String cpf){
         clienteService.excluirCliente(cpf);
     }

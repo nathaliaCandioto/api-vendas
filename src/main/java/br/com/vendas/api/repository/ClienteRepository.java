@@ -15,8 +15,8 @@ public interface ClienteRepository extends JpaRepository<Cliente,Long> {
            WHERE 1=1
            AND (c.cpf = :cpf OR :cpf IS NULL)
            AND (c.nome like :nome% OR :nome IS NULL)
-           AND (c.email like :email% OR :nome IS NULL)
-           AND (c.telefone like:telefone% OR :telefone IS NULL)
+           AND (c.email like :email% OR :email IS NULL)
+           AND (c.telefone like :telefone% OR :telefone IS NULL)
            """)
     List<Cliente> findByAttributes(@Param("cpf") String cpf,
                                    @Param("nome") String nome,

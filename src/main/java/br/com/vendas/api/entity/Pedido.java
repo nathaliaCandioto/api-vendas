@@ -25,7 +25,7 @@ public class Pedido {
     private Cliente cliente;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column
+    @Column(name="pagamento_id")
     private PagamentoEnum pagamento;
 
     public Long getId() {

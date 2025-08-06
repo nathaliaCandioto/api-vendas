@@ -1,0 +1,43 @@
+package br.com.vendas.api.controller;
+
+import br.com.vendas.api.entity.Cliente;
+import br.com.vendas.api.entity.PagamentoEnum;
+import br.com.vendas.api.entity.Pedido;
+import br.com.vendas.api.entity.Vendedor;
+import br.com.vendas.api.service.PedidoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/pedido")
+
+public class PedidoController {
+    @Autowired
+    private PedidoService pedidoService;
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public  void cadastrarPedido(@RequestBody Pedido pedido){
+        pedidoService.cadastrarPedido(pedido);
+    }
+
+    @GetMapping ("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Pedido> listaTodosPedidos(){
+        return pedidoService.listaTodosPedidos();
+
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Pedido>listarPedidoPorAtributo(Long id, Double preco, Long quantidade, Vendedor vendedor, Cliente cliente, PagamentoEnum pagamento){
+        return  pedidoService.findByAttributes(id,preco, quantidade, vendedor, cliente, pagamento);
+
+    }
+
+
+}

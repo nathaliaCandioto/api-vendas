@@ -5,6 +5,10 @@ import jakarta.persistence.*;
 @MappedSuperclass
 public abstract class Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column
     protected String nome;
     @Column
@@ -16,6 +20,14 @@ public abstract class Pessoa {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setCpf(String cpf) {
@@ -49,19 +61,22 @@ public abstract class Pessoa {
     @Override
     public String toString() {
         return "Pessoa{" +
-                "cpf='" + cpf + '\'' +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", telefone='" + telefone + '\'' +
-                '}';
+               "id=" + id +
+               ", nome='" + nome + '\'' +
+               ", email='" + email + '\'' +
+               ", telefone='" + telefone + '\'' +
+               ", cpf='" + cpf + '\'' +
+               '}';
     }
 
-    public Pessoa(String cpf, String nome, String email, String telefone) {
-        this.cpf = cpf;
+    public Pessoa(Long id, String nome, String email, String telefone, String cpf) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+        this.cpf = cpf;
     }
+
     public Pessoa(){
 
     }

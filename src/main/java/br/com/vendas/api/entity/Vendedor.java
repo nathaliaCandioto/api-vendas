@@ -6,25 +6,13 @@ import jakarta.persistence.*;
 @Table
 public class Vendedor extends Pessoa {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Column
     private Double salario;
     @Column
     private Double comissao;
 
-    public Vendedor(String cpf, String nome, String email, String telefone,Double salario,Double comissao){
-        super(cpf,nome,email,telefone);
+    public Vendedor(Long id, String cpf, String nome, String email, String telefone,Double salario,Double comissao){
+        super(id,cpf,nome,email,telefone);
 
     }
     public Vendedor(){
@@ -50,13 +38,12 @@ public class Vendedor extends Pessoa {
     @Override
     public String toString() {
         return "Vendedor{" +
-                "id=" + id +
-                ", salario=" + salario +
-                ", comissao=" + comissao +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", cpf='" + cpf + '\'' +
-                "} " + super.toString();
+               "salario=" + salario +
+               ", comissao=" + comissao +
+               ", nome='" + nome + '\'' +
+               ", email='" + email + '\'' +
+               ", telefone='" + telefone + '\'' +
+               ", cpf='" + cpf + '\'' +
+               "} " + super.toString();
     }
 }

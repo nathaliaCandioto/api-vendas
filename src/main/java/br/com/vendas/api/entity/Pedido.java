@@ -16,6 +16,9 @@ public class Pedido {
     @Column
     private Long quantidade;
 
+    @Column
+    private  String descricao;
+
     @ManyToOne
     @JoinColumn
     private Vendedor vendedor;
@@ -76,10 +79,19 @@ public class Pedido {
         this.pagamento = pagamento;
     }
 
-    public Pedido(Long id, Double preco, Long quantidade, Vendedor vendedor, Cliente cliente, PagamentoEnum pagamento) {
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Pedido(Long id, Double preco, Long quantidade,String descricao, Vendedor vendedor, Cliente cliente, PagamentoEnum pagamento) {
         this.id = id;
         this.preco = preco;
         this.quantidade = quantidade;
+        this.descricao = descricao;
         this.vendedor = vendedor;
         this.cliente = cliente;
         this.pagamento = pagamento;
@@ -91,6 +103,7 @@ public class Pedido {
                 "id=" + id +
                 ", preco=" + preco +
                 ", quantidade=" + quantidade +
+                ", descricao=" + descricao +
                 ", vendedor=" + vendedor +
                 ", cliente=" + cliente +
                 ", pagamento=" + pagamento +

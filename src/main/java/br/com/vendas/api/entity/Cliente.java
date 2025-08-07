@@ -8,13 +8,7 @@ import java.io.Serializable;
 @Table
 public class Cliente extends Pessoa {
 
-  @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    public Cliente(String cpf, String nome, String email, String telefone) {
-        super(cpf, nome, email, telefone);
-    }
 
     @Override
     public String toString() {
@@ -25,9 +19,10 @@ public class Cliente extends Pessoa {
         super();
     }
 
+
     public Cliente(String cpf, String nome, String email, String telefone, Long id) {
-        super(cpf, nome, email, telefone);
-        this.id = id;
+        super(id,cpf, nome, email, telefone);
+
     }
 
 

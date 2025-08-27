@@ -5,6 +5,7 @@ import br.com.vendas.api.repository.VendedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ public class VendedorService {
     private VendedorRepository vendedorRepository;
 
     public Vendedor cadastrarVendedor(Vendedor vendedor){
+        vendedor.setDataAtualizacao(new Date());
         return vendedorRepository.save(vendedor);
 
     }

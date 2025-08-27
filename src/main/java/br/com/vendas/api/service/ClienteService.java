@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     public Cliente cadastraCliente(Cliente cliente){
+        cliente.setDataAtualizacao(new Date());
         return clienteRepository.save(cliente);
 
     }

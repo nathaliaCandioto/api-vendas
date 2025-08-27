@@ -2,6 +2,8 @@ package br.com.vendas.api.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @MappedSuperclass
 public abstract class Pessoa {
 
@@ -17,6 +19,26 @@ public abstract class Pessoa {
     protected String telefone;
     @Column
     protected String cpf;
+    @Column(insertable = false,updatable = false)
+    private Date dataCriacao;
+    @Column(insertable =false)
+    private Date dataAtualizacao;
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataAtualizacao() {
+        return dataAtualizacao;
+    }
+
+    public void setDataAtualizacao(Date dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
+    }
 
     public String getCpf() {
         return cpf;

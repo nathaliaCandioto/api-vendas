@@ -2,14 +2,20 @@ package br.com.vendas.api.entity;
 
 public enum PagamentoEnum {
 
-    CREDITO("credito"),DEBITO("debito"),PIX("pix"),DINHEIRO("dinheiro");
-    private String descricao;
-    private PagamentoEnum(String descricao){
-        this.descricao=descricao;
+    CREDITO("credito"),
+    DEBITO("debito"),
+    PIX("pix"),
+    DINHEIRO("dinheiro");
+
+    private String tipoPagamento;
+    private PagamentoEnum(String tipoPagamento){
+        this.tipoPagamento = tipoPagamento;
 
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getTipoPagamento() {
+        return tipoPagamento;
     }
+
+
 }

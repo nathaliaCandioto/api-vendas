@@ -4,6 +4,7 @@ import br.com.vendas.api.entity.Cliente;
 import br.com.vendas.api.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,12 +28,14 @@ public class ClienteController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List <Cliente> listarCliente(@RequestParam(value = "cpf", required = false) String cpf,
-                                        @RequestParam(value = "nome", required = false) String nome,
-                                        @RequestParam(value="email",required=false) String email,
-                                        @RequestParam(value="telefone",required = false)String telefone){
-        return clienteService.findByAttributes(cpf, nome,email,telefone);
+    public ResponseEntity<List <Cliente>> listarClientePor(@RequestParam(value = "cpf", required = false) String cpf,
+                                                          @RequestParam(value = "nome", required = false) String nome,
+                                                          @RequestParam(value="email",required=false) String email,
+                                                          @RequestParam(value="telefone",required = false)String telefone){
+        List<Cliente> byAttributes = clienteService.findByAttributes(cpf, nome, email, telefone);
+        if(byAttributes.isEmpty())
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(byAttributes);
     }
 
     @DeleteMapping ("/{cpf}")

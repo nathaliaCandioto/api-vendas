@@ -7,6 +7,7 @@ import br.com.vendas.api.entity.Vendedor;
 import br.com.vendas.api.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +35,12 @@ public class PedidoController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Pedido>listarPedidoPorAtributo(Long id, Double preco, Long quantidade, Vendedor vendedor, Cliente cliente, PagamentoEnum pagamento){
-        return  pedidoService.findByAttributes(id,preco, quantidade, vendedor, cliente, pagamento);
+    public ResponseEntity<List<Pedido>> listarPedidoPor(Long id, Double preco, Long quantidade, Vendedor vendedor, Cliente cliente, PagamentoEnum pagamento){
+        List<Pedido> byAttributes = pedidoService.findByAttributes(id, preco, quantidade, vendedor, cliente, pagamento);
+        if(byAttributes.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(byAttributes);
 
     }
 

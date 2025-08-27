@@ -5,6 +5,7 @@ import br.com.vendas.api.repository.VendedorRepository;
 import br.com.vendas.api.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,14 +33,17 @@ public class VendedorController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<Vendedor> listarVendedoresPorAtributo(@RequestParam(value = "cpf", required = false) String cpf,
-                                                      @RequestParam(value = "nome", required = false) String nome,
-                                                      @RequestParam(value = "email", required = false) String email,
-                                                      @RequestParam(value = "telefone", required = false) String telefone,
-                                                      @RequestParam(value = "salario", required = false) Double salario,
-                                                      @RequestParam(value = "comissao", required = false) Double comissao) {
-        return vendedorService.findByatributes(cpf, nome, email, telefone, salario, comissao);
+    public ResponseEntity<List<Vendedor>> listarVendedoresPor(@RequestParam(value = "cpf", required = false) String cpf,
+                                                              @RequestParam(value = "nome", required = false) String nome,
+                                                              @RequestParam(value = "email", required = false) String email,
+                                                              @RequestParam(value = "telefone", required = false) String telefone,
+                                                              @RequestParam(value = "salario", required = false) Double salario,
+                                                              @RequestParam(value = "comissao", required = false) Double comissao) {
+        List<Vendedor> byatributes = vendedorService.findByatributes(cpf, nome, email, telefone, salario, comissao);
+        if(byatributes.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(byatributes);
 
     }
 

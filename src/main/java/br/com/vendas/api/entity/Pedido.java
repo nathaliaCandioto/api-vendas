@@ -17,7 +17,7 @@ public class Pedido {
     private Long quantidade;
 
     @Column
-    private  String descricao;
+    private String descricao;
 
     @ManyToOne
     @JoinColumn
@@ -30,6 +30,10 @@ public class Pedido {
     @Enumerated(EnumType.ORDINAL)
     @Column(name="pagamento_id")
     private PagamentoEnum pagamento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="status_id")
+    private StatusPedidoEnum statusPedido;
 
     public Long getId() {
         return id;
@@ -87,7 +91,15 @@ public class Pedido {
         this.descricao = descricao;
     }
 
-    public Pedido(Long id, Double preco, Long quantidade,String descricao, Vendedor vendedor, Cliente cliente, PagamentoEnum pagamento) {
+    public StatusPedidoEnum getStatusPedido() {
+        return statusPedido;
+    }
+
+    public void setStatusPedido(StatusPedidoEnum statusPedido) {
+        this.statusPedido = statusPedido;
+    }
+
+    public Pedido(Long id, Double preco, Long quantidade,String descricao,Vendedor vendedor, Cliente cliente, PagamentoEnum pagamento,StatusPedidoEnum statusPedido) {
         this.id = id;
         this.preco = preco;
         this.quantidade = quantidade;
@@ -95,6 +107,7 @@ public class Pedido {
         this.vendedor = vendedor;
         this.cliente = cliente;
         this.pagamento = pagamento;
+        this.statusPedido=statusPedido;
     }
 
     @Override
@@ -103,12 +116,14 @@ public class Pedido {
                 "id=" + id +
                 ", preco=" + preco +
                 ", quantidade=" + quantidade +
-                ", descricao=" + descricao +
+                ", descricao='" + descricao + '\'' +
                 ", vendedor=" + vendedor +
                 ", cliente=" + cliente +
                 ", pagamento=" + pagamento +
+                ", statusPedido=" + statusPedido +
                 '}';
     }
+
     public Pedido (){
 
     }

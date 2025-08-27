@@ -26,7 +26,7 @@ public interface PedidoRepository extends JpaRepository<Pedido,Long> {
                                   @Param("preco") Double preco,
                                   @Param("quantidade") Long quantidade,
                                   @Param( "vendedor") Vendedor vendedor,
-                                  @Param("Cliente") Cliente cliente,
+                                  @Param("cliente") Cliente cliente,
                                   @Param("pagamento") PagamentoEnum pagamento
     );
                                  

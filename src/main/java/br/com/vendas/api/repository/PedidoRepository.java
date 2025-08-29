@@ -1,9 +1,6 @@
 package br.com.vendas.api.repository;
 
-import br.com.vendas.api.entity.Cliente;
-import br.com.vendas.api.entity.PagamentoEnum;
-import br.com.vendas.api.entity.Pedido;
-import br.com.vendas.api.entity.Vendedor;
+import br.com.vendas.api.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,19 +12,23 @@ public interface PedidoRepository extends JpaRepository<Pedido,Long> {
     @Query("""
            SELECT p FROM Pedido p
             WHERE 1=1
-            AND (p.id=:id OR :id IS NOT NULL)
-            AND (p.preco=:preco OR :preco IS NOT NULL)
-            AND (p.quantidade=:quantidade OR :quantidade IS NOT NULL)
-            AND (p.vendedor=:vendedor OR :vendedor IS NOT NULL)
-            AND (p.cliente=:cliente OR :cliente IS NOT NULL)
-            AND (p.pagamento=:pagamento OR :pagamento IS NOT NULL)
+            AND (p.id=:id OR :id IS NULL)
+            AND (p.preco=:preco OR :preco IS NULL)
+            AND (p.quantidade=:quantidade OR :quantidade IS NULL)
+            AND (p.vendedor.nome =:vendedorNome OR :vendedorNome IS NULL)
+            AND (p.vendedor.cpf =:vendedorCpf OR :vendedorCpf IS NULL)
+            AND (p.cliente=:cliente OR :cliente IS NULL)
+            AND (p.pagamento=:pagamento OR :pagamento IS NULL)
+            AND (p.statusPedido=:statusPedido OR :statusPedido IS NULL)
            """)
     List<Pedido> findByAttributes(@Param("id") Long id,
                                   @Param("preco") Double preco,
                                   @Param("quantidade") Long quantidade,
-                                  @Param( "vendedor") Vendedor vendedor,
+                                  @Param( "vendedorNome") String vendedorNome,
+                                  @Param( "vendedorCpf") String vendedorCpf,
                                   @Param("cliente") Cliente cliente,
-                                  @Param("pagamento") PagamentoEnum pagamento
+                                  @Param("pagamento") PagamentoEnum pagamento,
+                                  @Param("statusPedido") StatusPedidoEnum statusPedido
     );
                                  
 
